@@ -1,15 +1,30 @@
 version: '3.8'
 services:
+  db:
+    image: postgres:latest
+    container_name: 'db'
+    restart: always
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - '5438:5432'
+
   backend:
     image: backend
     build:
       context: ./server
+    container_name: 'backend'
     ports:
       - 5000:3000
     restart: unless-stopped
     volumes:
       - ./server/:/app/
       - /app/node_modules
+    depends_on:
+      - db
 
   frontend:
     build: ./client
@@ -21,3 +36,6 @@ services:
     volumes:
       - ./client/:/app
       - '/app/node_modules'
+
+volumes:
+  postgres: null

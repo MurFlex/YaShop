@@ -11,8 +11,10 @@ datasource db {
 }
 
 model product {
-  id         Int     @id @default(autoincrement())
-  name       String
-  decription String?
-  published  Boolean @default(false)
+  id          Int     @id @default(autoincrement())
+  name        String
+  description String?
+  price       Int     @default(0)
+  image_path  String?
+  published   Boolean @default(false)
 }
