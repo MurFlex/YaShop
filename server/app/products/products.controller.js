@@ -52,15 +52,17 @@ export const createNewProduct = async (req, res) => {
 				published,
 			},
 		})
+
+		if (!product) {
+			return res.status(404).json({ error: 'Ошибка при создании товара' })
+		}
+
+		return res.json(product)
 	} catch (error) {
 		res.status(400).json({ error: 'Невалидные данные' })
 	}
 
-	if (!product) {
-		return res.status(404).json({ error: 'Ошибка при создании товара' })
-	}
-
-	return res.json(product)
+	return res.status(400).json({ error: 'Невалидные данные' })
 }
 
 // PATCH
