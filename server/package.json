@@ -17,6 +17,7 @@
 		"nodemon": "^3.1.0"
 	},
 	"devDependencies": {
+		"express-async-handler": "^1.2.0",
 		"prisma": "^5.10.2"
 	}
 }
