@@ -21,6 +21,7 @@ services:
       - 5000:3000
     entrypoint: /bin/sh
     command: -c "npx prisma migrate dev && npm run start"
+    restart: unless-stopped
     volumes:
       - ./server/:/app/
       - /app/node_modules
