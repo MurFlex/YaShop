@@ -19,7 +19,8 @@ services:
     container_name: 'backend'
     ports:
       - 5000:3000
-    restart: unless-stopped
+    entrypoint: /bin/sh
+    command: -c "npx prisma migrate dev && npm run start"
     volumes:
       - ./server/:/app/
       - /app/node_modules
