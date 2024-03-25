@@ -17,4 +17,14 @@ model product {
   price       Int     @default(0)
   image_path  String?
   published   Boolean @default(false)
+  vendor      Vendor? @relation(fields: [vendorId], references: [id])
+  vendorId    Int?
+}
+
+model Vendor {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String?
+  discount    Int       @default(0)
+  product     product[]
 }
