@@ -3,6 +3,7 @@ import express from 'express'
 import { prisma } from './app/prisma.js'
 import path from 'path'
 import productsRoutes from './app/products/products.routes.js'
+import vendorsRoutes from './app/vendors/vendor.routes.js'
 import { errorHandler, notFound } from './app/middleware/error.middleware.js'
 
 const app = express()
@@ -19,6 +20,7 @@ async function main() {
 	app.use('/uploads', express.static(path.join(__dirname, '/uploads/')))
 
 	app.use('/api/products', productsRoutes)
+	app.use('/api/vendors', vendorsRoutes)
 
 	app.use(notFound)
 	app.use(errorHandler)

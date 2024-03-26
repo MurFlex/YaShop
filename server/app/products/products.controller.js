@@ -1,5 +1,5 @@
-import { prisma } from '../prisma.js'
 import asyncHandler from 'express-async-handler'
+import { prisma } from '../prisma.js'
 
 // GET
 
@@ -10,7 +10,7 @@ export const getProducts = asyncHandler(async (req, res) => {
 	const exercises = await prisma.product.findMany({})
 
 	if (!exercises) {
-		return res.status(404).json({ error: 'Товары не найдены' })
+		return res.status(404).json({ error: 'Не найдено' })
 	}
 
 	res.json(exercises)
@@ -24,12 +24,12 @@ export const getProduct = asyncHandler(async (req, res) => {
 
 	const product = await prisma.product.findUnique({
 		where: {
-			id: Number(id),
+			id: +id,
 		},
 	})
 
 	if (!product) {
-		return res.status(404).json({ error: 'Товар не найден' })
+		return res.status(404).json({ error: 'Не найдено' })
 	}
 
 	return res.json(product)
@@ -55,12 +55,12 @@ export const createNewProduct = asyncHandler(async (req, res) => {
 		})
 
 		if (!product) {
-			return res.status(404).json({ error: 'Ошибка при создании товара' })
+			return res.status(404).json({ error: 'Не найдено' })
 		}
 
 		return res.json(product)
 	} catch (error) {
-		res.status(400).json({ error: 'Невалидные данные' })
+		res.status(500).json({ error: 'Внутренняя ошибка' })
 	}
 
 	return res.status(400).json({ error: 'Невалидные данные' })
@@ -79,7 +79,7 @@ export const updateProduct = asyncHandler(async (req, res) => {
 	try {
 		const product = await prisma.product.update({
 			where: {
-				id: Number(id),
+				id: +id,
 			},
 			data: {
 				name,
@@ -91,12 +91,12 @@ export const updateProduct = asyncHandler(async (req, res) => {
 		})
 
 		if (!product) {
-			return res.status(404).json({ error: 'Ошибка при обновлении товара' })
+			return res.status(404).json({ error: 'Не найдено' })
 		}
 
 		return res.json(product)
 	} catch (error) {
-		return res.status(400).json({ error: 'Невалидные данные' })
+		return res.status(500).json({ error: 'Внутренняя ошибка' })
 	}
 })
 
@@ -111,12 +111,12 @@ export const deleteProduct = asyncHandler(async (req, res) => {
 	try {
 		const product = await prisma.product.delete({
 			where: {
-				id: Number(id),
+				id: +id,
 			},
 		})
 
 		return res.json('Товар успешно удален!')
 	} catch (error) {
-		return res.status(404).json({ error: 'Товар не найден' })
+		return res.status(500).json({ error: 'Внутренняя ошибка' })
 	}
 })

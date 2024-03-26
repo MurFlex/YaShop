@@ -1,9 +1,9 @@
 import express from 'express'
 import {
-	getProducts,
-	getProduct,
 	createNewProduct,
 	deleteProduct,
+	getProduct,
+	getProducts,
 	updateProduct,
 } from './products.controller.js'
 
