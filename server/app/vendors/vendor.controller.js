@@ -3,10 +3,23 @@ import { prisma } from '../prisma.js'
 
 // GET
 
+// @desc Get list of all vendors
+// @route GET api/vendors/
+// @access Private
+export const getVendors = asyncHandler(async (req, res) => {
+	const exercises = await prisma.vendor.findMany({})
+
+	if (!exercises) {
+		return res.status(404).json({ error: 'Не найдено' })
+	}
+
+	res.json(exercises)
+})
+
 // @desc Get vendor by id
 // @route GET api/vendors/:id
 // @access Private
-export const getVendors = async (req, res) => {
+export const getVendor = async (req, res) => {
 	const { id } = req.params
 
 	const vendor = await prisma.vendor.findUnique({
