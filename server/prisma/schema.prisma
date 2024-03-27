@@ -11,14 +11,16 @@ datasource db {
 }
 
 model product {
-  id          Int     @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   name        String
   description String?
-  price       Int     @default(0)
+  price       Int       @default(0)
   image_path  String?
-  published   Boolean @default(false)
-  vendor      Vendor? @relation(fields: [vendorId], references: [id])
+  published   Boolean   @default(false)
+  vendor      Vendor?   @relation(fields: [vendorId], references: [id])
   vendorId    Int?
+  Category    Category? @relation(fields: [categoryId], references: [id])
+  categoryId  Int?
 }
 
 model Vendor {
@@ -27,4 +29,12 @@ model Vendor {
   description String?
   discount    Int       @default(0)
   product     product[]
+}
+
+model Category {
+  id                 Int       @id @default(autoincrement())
+  name               String
+  description        String?
+  parent_category_id Int?
+  product            product[]
 }

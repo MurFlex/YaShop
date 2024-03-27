@@ -19,7 +19,7 @@ export const getVendors = asyncHandler(async (req, res) => {
 // @desc Get vendor by id
 // @route GET api/vendors/:id
 // @access Private
-export const getVendor = async (req, res) => {
+export const getVendor = asyncHandler(async (req, res) => {
 	const { id } = req.params
 
 	const vendor = await prisma.vendor.findUnique({
@@ -33,7 +33,7 @@ export const getVendor = async (req, res) => {
 	}
 
 	return res.json(vendor)
-}
+})
 
 // POST
 

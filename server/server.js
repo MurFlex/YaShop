@@ -1,10 +1,11 @@
 import dotenv from 'dotenv'
 import express from 'express'
-import { prisma } from './app/prisma.js'
 import path from 'path'
+import categoriesRoutes from './app/categories/categories.routes.js'
+import { errorHandler, notFound } from './app/middleware/error.middleware.js'
+import { prisma } from './app/prisma.js'
 import productsRoutes from './app/products/products.routes.js'
 import vendorsRoutes from './app/vendors/vendor.routes.js'
-import { errorHandler, notFound } from './app/middleware/error.middleware.js'
 
 const app = express()
 
@@ -21,6 +22,7 @@ async function main() {
 
 	app.use('/api/products', productsRoutes)
 	app.use('/api/vendors', vendorsRoutes)
+	app.use('/api/categories', categoriesRoutes)
 
 	app.use(notFound)
 	app.use(errorHandler)
