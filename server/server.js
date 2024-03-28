@@ -6,6 +6,7 @@ import { errorHandler, notFound } from './app/middleware/error.middleware.js'
 import { prisma } from './app/prisma.js'
 import productsRoutes from './app/products/products.routes.js'
 import vendorsRoutes from './app/vendors/vendor.routes.js'
+import authRoutes from './app/auth/auth.routes.js'
 
 const app = express()
 
@@ -20,6 +21,7 @@ async function main() {
 
 	app.use('/uploads', express.static(path.join(__dirname, '/uploads/')))
 
+	app.use('/api/auth', authRoutes)
 	app.use('/api/products', productsRoutes)
 	app.use('/api/vendors', vendorsRoutes)
 	app.use('/api/categories', categoriesRoutes)
