@@ -1,6 +1,7 @@
 import dotenv from 'dotenv'
 import express from 'express'
 import path from 'path'
+import cors from 'cors'
 import categoriesRoutes from './app/categories/categories.routes.js'
 import { errorHandler, notFound } from './app/middleware/error.middleware.js'
 import { prisma } from './app/prisma.js'
@@ -14,6 +15,7 @@ dotenv.config()
 
 async function main() {
 	app.use(express.json())
+	app.use(cors())
 
 	const PORT = process.env.PORT || 3000
 

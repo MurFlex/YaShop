@@ -1,0 +1,12 @@
+@mixin title-font {
+	font-family: $title-font;
+	font-size: 17px;
+	font-weight: 700;
+	color: #333333;
+}
+
+@mixin flex-block {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

@@ -1,0 +1,25 @@
+@import '_variables.scss';
+@import '_animations.scss';
+@import '_mixins.scss';
+@import '_normalize.scss';
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+input {
+	border: none;
+}
+input:focus {
+	outline: none;
+}
+
+h1 {
+	margin: 0;
+}
+
+body {
+	background-color: $base-background;
+}
