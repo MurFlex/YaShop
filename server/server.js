@@ -8,6 +8,7 @@ import { prisma } from './app/prisma.js'
 import productsRoutes from './app/products/products.routes.js'
 import vendorsRoutes from './app/vendors/vendor.routes.js'
 import authRoutes from './app/auth/auth.routes.js'
+import { auth } from './app/middleware/auth.middleware.js'
 
 const app = express()
 
@@ -24,9 +25,9 @@ async function main() {
 	app.use('/uploads', express.static(path.join(__dirname, '/uploads/')))
 
 	app.use('/api/auth', authRoutes)
-	app.use('/api/products', productsRoutes)
-	app.use('/api/vendors', vendorsRoutes)
-	app.use('/api/categories', categoriesRoutes)
+	app.use('/api/products', auth, productsRoutes)
+	app.use('/api/vendors', auth, vendorsRoutes)
+	app.use('/api/categories', auth, categoriesRoutes)
 
 	app.use(notFound)
 	app.use(errorHandler)
