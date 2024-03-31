@@ -66,6 +66,9 @@ export const createNewCategory = asyncHandler(async (req, res) => {
 
 // PATCH
 
+// @desc Updating an existing category
+// @route PATCH /api/categories/:id
+// @access Private
 export const updateCategory = asyncHandler(async (req, res) => {
 	const { id } = req.params
 

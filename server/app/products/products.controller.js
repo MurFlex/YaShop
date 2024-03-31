@@ -7,7 +7,28 @@ import { prisma } from '../prisma.js'
 // @route GET api/products/
 // @access Private
 export const getProducts = asyncHandler(async (req, res) => {
-	const exercises = await prisma.product.findMany({})
+	const exercises = await prisma.product.findMany({
+		select: {
+			id: true,
+			name: true,
+			description: true,
+			price: true,
+			image_path: true,
+			published: true,
+			vendor: {
+				select: {
+					id: true,
+					name: true,
+				},
+			},
+			category: {
+				select: {
+					id: true,
+					name: true,
+				},
+			},
+		},
+	})
 
 	if (!exercises) {
 		return res.status(404).json({ error: 'Не найдено' })
@@ -26,6 +47,24 @@ export const getProduct = asyncHandler(async (req, res) => {
 		where: {
 			id: +id,
 		},
+		select: {
+			id: true,
+			name: true,
+			description: true,
+			price: true,
+			image_path: true,
+			published: true,
+			vendor: {
+				select: {
+					name: true,
+				},
+			},
+			category: {
+				select: {
+					name: true,
+				},
+			},
+		},
 	})
 
 	if (!product) {
@@ -41,7 +80,15 @@ export const getProduct = asyncHandler(async (req, res) => {
 // @route POST api/products
 // @access Private
 export const createNewProduct = asyncHandler(async (req, res) => {
-	const { name, description, price, image_path, published } = req.body
+	const {
+		name,
+		description,
+		price,
+		image_path,
+		published,
+		vendorId,
+		categoryId,
+	} = req.body
 
 	try {
 		const product = await prisma.product.create({
@@ -51,6 +98,8 @@ export const createNewProduct = asyncHandler(async (req, res) => {
 				price,
 				image_path,
 				published,
+				vendorId,
+				categoryId,
 			},
 		})
 

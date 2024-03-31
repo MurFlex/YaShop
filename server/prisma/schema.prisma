@@ -20,7 +20,7 @@ model User {
   password String
 }
 
-model product {
+model Product {
   id          Int       @id @default(autoincrement())
   name        String
   description String?
@@ -29,7 +29,7 @@ model product {
   published   Boolean   @default(false)
   vendor      Vendor?   @relation(fields: [vendorId], references: [id])
   vendorId    Int?
-  Category    Category? @relation(fields: [categoryId], references: [id])
+  category    Category? @relation(fields: [categoryId], references: [id])
   categoryId  Int?
 }
 
@@ -38,7 +38,7 @@ model Vendor {
   name        String
   description String?
   discount    Int       @default(0)
-  product     product[]
+  product     Product[]
 }
 
 model Category {
@@ -46,5 +46,5 @@ model Category {
   name               String
   description        String?
   parent_category_id Int?
-  product            product[]
+  product            Product[]
 }
