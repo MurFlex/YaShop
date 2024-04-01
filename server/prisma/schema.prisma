@@ -48,3 +48,8 @@ model Category {
   parent_category_id Int?
   product            Product[]
 }
+
+model Image {
+  id   Int    @id @default(autoincrement())
+  path String
+}

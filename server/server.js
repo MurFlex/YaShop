@@ -1,14 +1,15 @@
+import cors from 'cors'
 import dotenv from 'dotenv'
 import express from 'express'
 import path from 'path'
-import cors from 'cors'
+import authRoutes from './app/auth/auth.routes.js'
 import categoriesRoutes from './app/categories/categories.routes.js'
+import imagesRoutes from './app/images/images.routes.js'
+import { auth } from './app/middleware/auth.middleware.js'
 import { errorHandler, notFound } from './app/middleware/error.middleware.js'
 import { prisma } from './app/prisma.js'
 import productsRoutes from './app/products/products.routes.js'
 import vendorsRoutes from './app/vendors/vendor.routes.js'
-import authRoutes from './app/auth/auth.routes.js'
-import { auth } from './app/middleware/auth.middleware.js'
 
 const app = express()
 
@@ -22,12 +23,13 @@ async function main() {
 
 	const __dirname = path.resolve()
 
-	app.use('/uploads', express.static(path.join(__dirname, '/uploads/')))
+	app.use('/static', express.static(path.join(__dirname, '/static')))
 
 	app.use('/api/auth', authRoutes)
 	app.use('/api/products', auth, productsRoutes)
 	app.use('/api/vendors', auth, vendorsRoutes)
 	app.use('/api/categories', auth, categoriesRoutes)
+	app.use('/api/images', auth, imagesRoutes)
 
 	app.use(notFound)
 	app.use(errorHandler)
