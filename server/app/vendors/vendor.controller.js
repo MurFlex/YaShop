@@ -66,6 +66,9 @@ export const createNewVendor = asyncHandler(async (req, res) => {
 
 // PATCH
 
+// @desc Updating an existing vendor
+// @route PATCH /api/vendors/:id
+// @access Private
 export const updateVendor = asyncHandler(async (req, res) => {
 	const { id } = req.params
 
