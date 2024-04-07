@@ -1,0 +1,40 @@
+@import '@/assets/_variables.scss';
+
+input {
+  width: 100%;
+  border: 1px solid #d3dbe2;
+  border-radius: 3px;
+  padding: 5px;
+  height: 32px;
+  transition: 0.3s;
+  
+  &:focus {
+    border-color: #0388cc;
+    box-shadow: 0 0 3px #0388cc;
+    outline: none;
+  }
+}
+
+.error {
+  border-color: $error-color;
+
+  &:focus {
+    border-color: $error-color;
+    box-shadow: 0 0 3px $error-color;
+  }
+}
+
+p {
+  color: $error-color;
+}
+
+label {
+  color: #555;
+}
+
+div {
+  @include main-size;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

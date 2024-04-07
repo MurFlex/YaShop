@@ -22,3 +22,7 @@
 	align-items: center;
 	justify-content: center;
 }
+
+@mixin main-size {
+	font-size: 13px;
+}
