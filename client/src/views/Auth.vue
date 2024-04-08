@@ -22,12 +22,18 @@
 </template>
 
 <script setup lang="ts">
+import { useNotification } from '@/composables/useNotification'
 import router from '@/routes'
 import axios from 'axios'
 import { ref } from 'vue'
 
+import { NotificationTypes } from '@/enums/Notification.enum'
+import type { INotification } from '@/interfaces/Notification.interface'
+
 const email = ref('')
 const password = ref('')
+
+const { pushNotification } = useNotification()
 
 if (localStorage.token) {
 	router.push({ path: '/' })
@@ -46,7 +52,13 @@ const login = (e: Event): void => {
 			router.push({ path: '/' })
 		})
 		.catch(error => {
-			console.log(error.data)
+			const notification: INotification = {
+				type: NotificationTypes.Error,
+				title: 'Ошибка авторизации',
+				message: error.response.data.message,
+			}
+
+			pushNotification(notification)
 		})
 }
 </script>
