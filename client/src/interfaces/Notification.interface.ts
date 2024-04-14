@@ -1,4 +1,4 @@
-import { NotificationTypes } from '@/enums/Notification.enum'
+import type { NotificationTypes } from '@/enums/Notification.enum'
 
 export interface INotification {
 	type: NotificationTypes

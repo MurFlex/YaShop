@@ -1,9 +1,9 @@
-import { ref, computed } from 'vue'
 import type { INotification } from '@/interfaces/Notification.interface'
+import { computed, ref } from 'vue'
 
 const DEFAULT_TIMER: number = 5000
 
-const store = ref([])
+const store = ref<INotification[]>([])
 
 export const useNotification = () => {
 	const notifications = computed(() => store.value)

@@ -68,7 +68,6 @@ const login = (e: Event): void => {
 <style lang="scss">
 .auth {
 	@include flex-block;
-	width: 100vw;
 	height: 100vh;
 
 	&-form {
