@@ -49,7 +49,9 @@ const login = (e: Event): void => {
 		})
 		.then(response => {
 			localStorage.token = response.data[1]
-			router.push({ path: '/' })
+			router.push({ path: '/' }).then(() => {
+				window.location.reload() // check if this ok
+			})
 		})
 		.catch(error => {
 			const notification: INotification = {

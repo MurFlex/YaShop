@@ -2,6 +2,7 @@
 @import '_animations.scss';
 @import '_mixins.scss';
 @import '_normalize.scss';
+@import '_fonts.scss';
 
 * {
 	box-sizing: border-box;
@@ -22,4 +23,6 @@ h1 {
 
 body {
 	background-color: $base-background;
+	max-width: 1240px;
+	margin: 0 auto;
 }
