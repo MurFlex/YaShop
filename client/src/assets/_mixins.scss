@@ -5,6 +5,18 @@
 	color: #333333;
 }
 
+@mixin main-text {
+	font-family: 'Inter', sans-serif;
+	font-variation-settings: 'wght' 400;
+	font-size: 13px;
+}
+
+@mixin main-text2 {
+	font-family: 'Inter', sans-serif;
+	font-variation-settings: 'wght' 500;
+	font-size: 14px;
+}
+
 @mixin flex-block {
 	display: flex;
 	align-items: center;
