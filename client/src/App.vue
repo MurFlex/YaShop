@@ -10,7 +10,7 @@
 <script setup lang="ts">
 import axios from 'axios'
 import { ref } from 'vue'
-import NotificationList from './components/notification/NotificationList.vue'
+import NotificationList from './components/NotificationList.vue'
 import Header from './layout/Header.vue'
 import router from './routes'
 
