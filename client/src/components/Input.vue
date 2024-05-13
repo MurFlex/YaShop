@@ -1,8 +1,9 @@
+
 <template>
-  <div :class = "{'input_container' : input_container}">
-    <label v-if="label">{{ label }}</label>
-    <input :class="{ 'error' : error }" :value="value" @input="onInputHandler" type="text"/>
-    <p v-if="error">{{ error }}</p>
+<div :class="{ 'input-container': input_container }">
+    <label v-if="label" :class="{'input-container__label' : input-container__label}">{{ label }}</label>
+    <input :class="{ 'input-container__input': true, 'input-container__input--error': error }" :value="value" @input="onInputHandler" type="text"/>
+    <p :class="{ 'input-container__error-text': error }" v-if="error">{{ error }}</p>
   </div>
 </template>
 
@@ -34,3 +35,44 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+input {
+  width: 100%;
+  border: 1px solid #d3dbe2;
+  border-radius: 3px;
+  padding: 5px;
+  height: 32px;
+  transition: 0.3s;
+  
+  &:focus {
+    border-color: #0388cc;
+    box-shadow: 0 0 3px #0388cc;
+    outline: none;
+  }
+}
+
+.error {
+  border-color: $error-color;
+
+  &:focus {
+    border-color: $error-color;
+    box-shadow: 0 0 3px $error-color;
+  }
+}
+
+.input-container__error-text {
+  color: $error-color;
+}
+
+.input-container__label {
+  color: #555;
+}
+
+.input_container {
+  @include main-size;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+</style>
