@@ -16,7 +16,7 @@ const error = ref(null);
 const onInputHandler = (evt) => {
   const inputValue = evt.target.value;
   value.value = inputValue;
-  error.value = props.validationCallback(inputValue);
+  error.value = validationCallback(inputValue);
 };
 </script>
 
