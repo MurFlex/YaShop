@@ -1,6 +1,6 @@
 import type { NotificationTypes } from '@/enums/Notification.enum'
 
-export interface INotification {
+export default interface INotification {
 	type: NotificationTypes
 	title: string
 	message: string

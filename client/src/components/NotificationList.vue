@@ -20,7 +20,7 @@
 <script setup lang="ts">
 import { useNotification } from '@/composables/useNotification'
 import { NotificationTypes } from '@/enums/Notification.enum'
-import type { INotification } from '@/interfaces/Notification.interface'
+import type INotification from '@/interfaces/Notification.interface'
 import { computed } from 'vue'
 
 const { notifications } = useNotification()

@@ -9,7 +9,7 @@ import { getCurrentInstance, onMounted } from 'vue'
 const instance = getCurrentInstance()
 
 onMounted(() => {
-	instance.proxy.$el.parentElement.style.position = 'relative'
+	instance!.proxy!.$el!.parentElement!.style.position = 'relative'
 })
 </script>
 <style lang="scss">
