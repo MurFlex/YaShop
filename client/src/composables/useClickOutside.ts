@@ -2,9 +2,9 @@ import type { Ref } from 'vue'
 import { onMounted } from 'vue'
 
 export default function useClickOutside(
-	component: Ref<HTMLInputElement>,
+	component: Ref<HTMLElement>,
 	callback: Function,
-	excludeComponent: Ref<HTMLInputElement>
+	excludeComponent: Ref<HTMLElement>
 ) {
 	if (!component) {
 		throw new Error('A component has to be provided.')
