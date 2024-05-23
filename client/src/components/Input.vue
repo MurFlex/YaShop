@@ -10,13 +10,28 @@
 <script setup>
 import { ref } from 'vue';
 
+const props = defineProps({
+  label: {
+    type: String,
+    default: ''
+  },
+  value: {
+    type: String,
+    default: ''
+  },
+  validationCallback: {
+    type: Function,
+    default: () => null
+  }
+});
+
 const value = ref('');
 const error = ref(null);
 
 const onInputHandler = (evt) => {
   const inputValue = evt.target.value;
   value.value = inputValue;
-  error.value = validationCallback(inputValue);
+  error.value = props.validationCallback(inputValue);
 };
 </script>
 
