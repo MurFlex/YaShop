@@ -37,7 +37,7 @@ const onInputHandler = (evt) => {
 
 <style lang="scss">
 .input-container {
-  @include main-size;
+  @include main-text;
   display: flex;
   flex-direction: column;
   gap: 8px;
