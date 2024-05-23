@@ -9,7 +9,6 @@
 
 <script setup>
 import { ref } from 'vue';
-
 const props = defineProps({
   label: {
     type: String,
@@ -24,7 +23,6 @@ const props = defineProps({
     default: () => null
   }
 });
-
 const value = ref('');
 const error = ref(null);
 
@@ -32,6 +30,7 @@ const onInputHandler = (evt) => {
   const inputValue = evt.target.value;
   value.value = inputValue;
   error.value = props.validationCallback(inputValue);
+  error.value = validationCallback(inputValue);
 };
 </script>
 
