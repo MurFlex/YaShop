@@ -1,9 +1,9 @@
 import { onMounted } from 'vue'
 
 export default function useClickOutside(
-	component,
+	component: any,
 	callback: Function,
-	excludeComponent
+	excludeComponent: any
 ) {
 	if (!component) {
 		throw new Error('A component has to be provided.')
